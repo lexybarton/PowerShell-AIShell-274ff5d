@@ -53,7 +53,7 @@ param tags object = {
 // Scope of the deployment, currently just the subscription is supported
 targetScope = 'subscription'
 
-// Createa the resource group
+// Create a the resource group
 resource rg 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: resourceGroupName
   location: resourceGroupLocation
