@@ -1,7 +1,7 @@
 # Deploying Azure OpenAI Service via Bicep 
 
 In order to use the `openai-gpt` agent you will either need a public OpenAI API key or an Azure
-OpenAI deployment. Due to its additional features and manage-ability, we recommend using the Azure
+OpenAI deployment. Due to its additional features and manageability, we recommend using the Azure
 OpenAI Service. This document provides easy step-by-step instructions on how to deploy the Azure
 OpenAI Service using Bicep files.
 
