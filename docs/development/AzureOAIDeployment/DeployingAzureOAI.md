@@ -29,7 +29,8 @@ git clone www.github.com/PowerShell/AIShell
 cd AIShell/docs/development/AzureOAIDeployment
 ```
 
-You will need to modify the `./main.bicep` file to include your own values. You will have to modify the parameters at the top of the file.
+You will need to modify the `./main.bicep` file to include your own values. You will have to modify
+the parameters at the top of the file.
 
 ```bicep
 @description('This is the name of your AI Service Account')
@@ -83,7 +84,7 @@ az deployment group create --resource-group <resource group name> --template-fil
 New-AzResourceGroupDeployment -ResourceGroupName <resource group name> -TemplateFile ./main.bicep
 ```
 
-### 4. Configuring the agent to use the deployment
+### 3. Configuring the agent to use the deployment
 
 You will need to get the endpoint and key of the deployment you just created. You can do this using the following commands in either Azure CLI or Azure PowerShell.
 
