@@ -39,7 +39,7 @@ resource openAIService 'Microsoft.CognitiveServices/accounts@2024-10-01' = {
   }
 }
 
-resource gpt4oMiniDeployment 'Microsoft.CognitiveServices/accounts/deployments@2024-10-01' = {
+resource azopenaideployment 'Microsoft.CognitiveServices/accounts/deployments@2024-10-01' = {
     parent: openAIService
     name: modeldeploymentname
     properties: {

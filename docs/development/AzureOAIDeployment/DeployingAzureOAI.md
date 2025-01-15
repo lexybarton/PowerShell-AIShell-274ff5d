@@ -76,41 +76,31 @@ instance! Simply use either Azure CLI or Azure PowerShell to deploy the bicep fi
 
 ```sh
 az deployment group create --resource-group <resource group name> --template-file ./main.bicep 
+
+// Get the endpoint and key of the deployment
+az cognitiveservices account show --name <account name> --resource-group <resource group name> | jq -r .properties.endpoint
+
+az cognitiveservices account keys list --name <account name> --resource-group  <resource group name> | jq -r .key1
 ```
 
 #### Using Azure PowerShell
 
 ```powershell
 New-AzResourceGroupDeployment -ResourceGroupName <resource group name> -TemplateFile ./main.bicep
+
+// Get the endpoint and key of the deployment
+Get-AzCognitiveServicesAccount -ResourceGroupName <resource group name> -Name <account name>  | Select-Object -Property Endpoint
+
+Get-AzCognitiveServicesAccountKey -ResourceGroupName <resource group name> -Name <account name> | Select-Object -Property Key1
 ```
 
 ### 3. Configuring the agent to use the deployment
 
-You will need to get the endpoint and key of the deployment you just created. You can do this using the following commands in either Azure CLI or Azure PowerShell.
+Now that you have the endpoint and key of the deployment, you can open up the `openai-gpt` agent and
+run `/agent config` to edit the json configuration file with all the details of the deployment. The
+example below shows the default system prompt and the fields that need to be updated.
 
-#### Getting the endpoint
-
-```powershell
-Get-AzCognitiveServicesAccount -ResourceGroupName <resource group name> -Name <account name>  | Select-Object -Property Endpoint
-```
-
-```sh
-az cognitiveservices account show --name <account name> --resource-group <resource group name> | jq -r .properties.endpoint
-```
-
-#### Getting the key
-
-```powershell
-Get-AzCognitiveServicesAccountKey -ResourceGroupName <resource group name> -Name <account name> | Select-Object -Property Key1
-```
-
-```sh
-az cognitiveservices account keys list --name <myResourceName> --resource-group  <myResourceGroupName> | jq -r .key1
-```
-
-Now that you have the endpoint and key of the deployment, you can open up the `openai-gpt` agent and run `/agent config` to edit the json configuration file with all the details of the deployment. The example below shows the default system prompt and the fields that need to be updated.
-
-```json
+```jsonc
 {
   // Declare GPT instances.
   "GPTs": [
