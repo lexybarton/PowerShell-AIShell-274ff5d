@@ -5,9 +5,8 @@ namespace AIShell.OpenAI.Agent;
 internal class ModelInfo
 {
     // Models gpt4, gpt3.5, and the variants of them all use the 'cl100k_base' token encoding.
-    // But the gpt-4o model uses the 'o200k_base' token encoding. For reference:
-    //   https://github.com/openai/tiktoken/blob/5d970c1100d3210b42497203d6b5c1e30cfda6cb/tiktoken/model.py#L7
-    //   https://github.com/dmitry-brazhenko/SharpToken/blob/main/SharpToken/Lib/Model.cs#L8
+    // But gpt-4o and o1 models use the 'o200k_base' token encoding. For reference:
+    //   https://github.com/openai/tiktoken/blob/63527649963def8c759b0f91f2eb69a40934e468/tiktoken/model.py
     private const string Gpt4oEncoding = "o200k_base";
     private const string Gpt34Encoding = "cl100k_base";
 
@@ -21,6 +20,7 @@ internal class ModelInfo
         // https://github.com/openai/openai-cookbook/blob/main/examples/How_to_count_tokens_with_tiktoken.ipynb
         s_modelMap = new(StringComparer.OrdinalIgnoreCase)
         {
+            ["o1"]            = new(tokenLimit: 200_000, encoding: Gpt4oEncoding),
             ["gpt-4o"]        = new(tokenLimit: 128_000, encoding: Gpt4oEncoding),
             ["gpt-4"]         = new(tokenLimit: 8_192),
             ["gpt-4-32k"]     = new(tokenLimit: 32_768),

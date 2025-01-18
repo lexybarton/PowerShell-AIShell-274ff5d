@@ -78,7 +78,8 @@ internal class ChatService
         // Every reply is primed with <|start|>assistant<|message|>, so we subtract 3 from the 'InputTokenCount'.
         int promptTokenCount = usage.InputTokenCount - 3;
         // 'ReasoningTokenCount' should be 0 for non-o1 models.
-        int responseTokenCount = usage.OutputTokenCount - usage.OutputTokenDetails.ReasoningTokenCount;
+        int reasoningTokenCount = usage.OutputTokenDetails is null ? 0 : usage.OutputTokenDetails.ReasoningTokenCount;
+        int responseTokenCount = usage.OutputTokenCount - reasoningTokenCount;
 
         if (_totalInputToken is 0)
         {
