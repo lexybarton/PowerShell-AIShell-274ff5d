@@ -63,7 +63,7 @@ internal class TextBasedModel : BaseModel
         int endIndex = responseContent.IndexOf("```", startIndex + 3);
         if (startIndex != -1 && endIndex != -1)
         {
-            if(responseContent.Contains("```python\n") || responseContent.Contains("```powershell\n"))
+            if(responseContent.Contains("```python\n") || responseContent.Contains("```powershell\n" || responseContent.Contains("```csharp\n")))
             {
                 isCodeBlockComplete = true;
             }

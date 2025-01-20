@@ -153,7 +153,7 @@ public sealed class InterpreterAgent : ILLMAgent
 
     internal void UpdateDescription()
     {
-        const string DefaultDescription = "An agent that specializes in completing code related tasks. Given a task, this agent will write a plan, generate code, execute code, and move on to the next step of the plan until the task is complete while correcting itself for any errors. This agent currently only supports PowerShell and Python languages.";
+        const string DefaultDescription = "An agent that specializes in completing code related tasks. Given a task, this agent will write a plan, generate code, execute code, and move on to the next step of the plan until the task is complete while correcting itself for any errors. This agent currently only supports PowerShell Python and CSharp languages.";
 
         if (_settings is null)
         {

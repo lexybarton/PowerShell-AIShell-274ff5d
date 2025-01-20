@@ -28,6 +28,6 @@ public interface IShell
     List<CodeBlock> ExtractCodeBlocks(string text, out List<SourceInfo> sourceInfos);
 
     // TODO:
-    // - methods to run code: python, command-line, powershell, node-js.
+    // - methods to run code: python, csharp, command-line, powershell, node-js.
     // - methods to communicate with shell client.
 }

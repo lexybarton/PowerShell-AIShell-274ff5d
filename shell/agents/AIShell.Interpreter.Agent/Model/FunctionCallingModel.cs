@@ -11,7 +11,7 @@ internal static class Tools
     internal static ChatCompletionsFunctionToolDefinition RunCode = new()
     {
         Name = "execute",
-        Description = "This function is able to run given PowerShell and Python code. This will allow you to execute PowerShell and Python code " +
+        Description = "This function is able to run given PowerShell and Python and CSharp code. This will allow you to execute PowerShell and Python and CSharp code " +
         "on my local machine.",
         Parameters = BinaryData.FromObjectAsJson(
         new
@@ -23,7 +23,7 @@ internal static class Tools
                 {
                     Type = "string",
                     Description = "The programming language (required parameter to the `execute` function)",
-                    Enum = new[] { "python", "powershell" },
+                    Enum = new[] { "python", "powershell", "csharp" },
                 },
                 Code = new
                 {

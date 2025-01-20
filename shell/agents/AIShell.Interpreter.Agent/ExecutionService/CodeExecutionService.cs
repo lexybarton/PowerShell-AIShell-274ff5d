@@ -6,7 +6,7 @@
 /// </summary>
 public class CodeExecutionService
 {
-    private readonly HashSet<string> Languages = new(StringComparer.OrdinalIgnoreCase) { "powershell", "python" };
+    private readonly HashSet<string> Languages = new(StringComparer.OrdinalIgnoreCase) { "powershell", "python", "csharp" };
     private readonly Dictionary<string, SubprocessLanguage> ActiveLanguages = new(StringComparer.OrdinalIgnoreCase);
     private readonly Dictionary<string, bool> LangPathBools = new(StringComparer.OrdinalIgnoreCase);
 
@@ -52,8 +52,8 @@ public class CodeExecutionService
                         throw new OperationCanceledException();
                 }
             }
-        } 
-        catch(OperationCanceledException)
+        }
+        catch (OperationCanceledException)
         {
             packet.ResetContent("Code run cancelled.");
         }
@@ -87,7 +87,7 @@ public class CodeExecutionService
 
                 if (LangPathBools[language])
                 {
-                    versions += $"- **{ language}**: { await langObj.GetVersion()}";
+                    versions += $"- **{language}**: {await langObj.GetVersion()}";
                 }
                 else
                 {
@@ -107,7 +107,7 @@ public class CodeExecutionService
         return versions.Trim();
     }
 
-    private bool TryGetLanguage(string language,out SubprocessLanguage langObj)
+    private bool TryGetLanguage(string language, out SubprocessLanguage langObj)
     {
         if (ActiveLanguages.TryGetValue(language, out langObj))
         {
@@ -120,6 +120,7 @@ public class CodeExecutionService
             {
                 "powershell" => new PowerShell(),
                 "python" => new Python(),
+                "csharp" => new CSharp(),
                 _ => throw new NotSupportedException()
             };
 
