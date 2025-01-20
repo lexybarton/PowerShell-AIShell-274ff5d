@@ -116,7 +116,7 @@ internal class ChatSession : IDisposable
         try
         {
             context.Status("Get Azure CLI or Azure PowerShell login token ...");
-            // Get an access token from the AzureCLI login or Azure PowerShell login, using the specific audience guid.
+            // Get an access token from the Azure CLI login or Azure PowerShell login, using the specific audience guid.
             await _accessToken.CreateOrRenewTokenAsync(cancellationToken);
 
             context.Status("Check Copilot authorization ...");
