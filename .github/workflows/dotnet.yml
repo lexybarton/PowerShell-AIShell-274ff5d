@@ -10,25 +10,25 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build-linux:
-    runs-on: ubuntu-latest
-    env:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+#   build-linux:
+#     runs-on: ubuntu-latest
+#     env:
+#       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.403
-    - name: Build
-      shell: pwsh
-      run: |
-        Import-Module ./build.psm1 -Force
-        Start-Build -Verbose
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: Setup .NET
+#       uses: actions/setup-dotnet@v4
+#       with:
+#         dotnet-version: 8.0.403
+#     - name: Build
+#       shell: pwsh
+#       run: |
+#         Import-Module ./build.psm1 -Force
+#         Start-Build -Verbose
 
   build-windows:
-    runs-on: windows-latest
+    runs-on: self-hosted
     env:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
@@ -44,19 +44,19 @@ jobs:
         Import-Module ./build.psm1 -Force
         Start-Build -Verbose
 
-  build-macos:
-    runs-on: macos-latest
-    env:
-      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  # build-macos:
+  #   runs-on: macos-latest
+  #   env:
+  #     DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.403
-    - name: Build
-      shell: pwsh
-      run: |
-        Import-Module ./build.psm1 -Force
-        Start-Build -Verbose
+  #   steps:
+  #   - uses: actions/checkout@v4
+  #   - name: Setup .NET
+  #     uses: actions/setup-dotnet@v4
+  #     with:
+  #       dotnet-version: 8.0.403
+  #   - name: Build
+  #     shell: pwsh
+  #     run: |
+  #       Import-Module ./build.psm1 -Force
+  #       Start-Build -Verbose
